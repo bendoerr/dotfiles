@@ -107,6 +107,13 @@ set visualbell      " stfu
 set scrolloff=2     " keep two lines before cursor when scrolling
 
 " ----------------------------------------------------------------------------
+"  Pathogen
+" ----------------------------------------------------------------------------
+runtime /bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
+call pathogen#helptags()
+
+" ----------------------------------------------------------------------------
 "  Colors and Filetype Fun
 " ----------------------------------------------------------------------------
 
@@ -122,32 +129,49 @@ if has("gui_running")
     set guifont=DejaVu\ Sans\ Mono:h13
 endif
 
+" gnome terminal doesn't advertise it's 256 color support
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+endif
+
 " ----------------------------------------------------------------------------
 "  Plugin Specific
 " ----------------------------------------------------------------------------
 
 " NERDTree
-" map <F2> :NERDTreeToggle<CR>
-
-" Vim-Pad
-" let g:pad_dir = "~/notes/"
-
-" Golden-Ratio
-" let g:golden_ratio_autocommand = 1
-" nnoremap <leader>r :GoldenRatioResize<CR>
+map <F2> :NERDTreeToggle<CR>
 
 " Powerline
-" let g:Powerline_symbols = 'fancy'
-" let g:Powerline_colorscheme = 'skwp'
-" if has("gui_running")
-"     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h13
-" endif
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_colorscheme = 'skwp'
+if has("gui_running")
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h13
+endif
+
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme= 'solarized'
+let g:airline_solarized_bg='dark'
 
 " Syntastic
-" let g:syntastic_error_symbol = '✗✗'
-" let g:syntastic_style_error_symbol = '✠✠'
-" let g:syntastic_warning_symbol = '∆∆'
-" let g:syntastic_style_warning_symbol = '≈≈'
+let g:syntastic_error_symbol = '✗✗'
+let g:syntastic_style_error_symbol = '✠✠'
+let g:syntastic_warning_symbol = '∆∆'
+let g:syntastic_style_warning_symbol = '≈≈'
+
+" GitGutter
+map <F3> :GitGutterToggle<CR>
+map <F4> :GitGutterLineHighlightsToggle<CR>
+let g:gitgutter_sign_added = '++'
+let g:gitgutter_sign_modified = '±±'
+let g:gitgutter_sign_removed = '--'
+let g:gitgutter_sign_modified_removed = '∓∓'
+
+" Indent Guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 
 " ----------------------------------------------------------------------------
 "  Custom Functions/Mappings

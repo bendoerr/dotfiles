@@ -1,0 +1,2 @@
+#compdef extract
+_files -g '*.tar.bz2 *.tar.gz *.bz2 *.dmg *.gz *.tar *.tbz2 *.tgz *.zip *.ZIP *.pax *.pax.Z *.Z'

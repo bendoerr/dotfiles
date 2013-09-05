@@ -1,0 +1,81 @@
+#!/bin/zsh
+#
+# Finds Maven Artifacts
+
+autoload colors && colors;
+
+use_find=false
+hash locate 2>/dev/null || use_find=true
+
+local_only=false
+external_only=false
+
+while getopts ":fle" opt; do
+    case $opt in
+        f) use_find=true ;;
+        l) local_only=true ;;
+        e) external_only=true ;;
+    esac
+done
+shift $((OPTIND-1))
+test $# -lt 1 && die_usage
+
+keyword="$1"
+
+print_from_path() {
+    l=$1
+    l1="${l%/*}"
+    l2="${l1%/*}"
+    l3="${l2%/*}"
+    version="${l1##*/}"
+    module="${l2##*/}"
+    group="${${l3##$HOME/.m2/repository/}//\//.}"
+
+    cat >&2 <<EOS
+$fg[yellow]$group:$module:$version$reset_color
+$fg[cyan]$l1$reset_color
+<dependency>
+    <group>$group</group>
+    <artifact>$module</artifact>
+    <version>$version</version>
+</dependency>
+
+EOS
+}
+
+if ! $external_only; then
+    echo -e "$fg[blue]System Artifacts$reset_color"
+    if $use_find; then
+        for l in $(find "$HOME/.m2/repository/" -iname "*$keyword*.pom" -type f);
+        do print_from_path $l;
+        done
+    else
+        for l in $(locate -i "$HOME/.m2/repository/*$keyword*.pom");
+        do print_from_path $l;
+        done
+    fi
+fi
+
+if ! $local_only; then
+    echo -e "$fg[blue]Central Artifacts$reset_color"
+    hash jq 2>/dev/null || { echo "Install http://stedolan.github.io/jq/"; exit 1; }
+    json=$(curl --silent "http://search.maven.org/solrsearch/select?q=$keyword&wt=json")
+
+    for i in $(echo "$json" | jq '.response.docs | keys | @sh' | tr -d '"'); do
+        version=$(echo $json | jq ".response.docs[$i].latestVersion" | tr -d '"')
+        module=$(echo $json | jq ".response.docs[$i].a" | tr -d '"')
+        group=$(echo $json | jq ".response.docs[$i].g" | tr -d '"')
+
+
+    cat >&2 <<EOS
+$fg[yellow]$group:$module:$version$reset_color
+<dependency>
+    <group>$group</group>
+    <artifact>$module</artifact>
+    <version>$version</version>
+</dependency>
+
+EOS
+    done
+fi
+

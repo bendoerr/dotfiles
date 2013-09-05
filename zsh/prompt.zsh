@@ -82,14 +82,14 @@ directory_name(){
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n\e[${DW_FW}C%{$fg_bold[cyan]%}%D%{$reset_color%}\e[${DW_BACK}D$(who_am_i) in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n\e[${DW_FW}C%{$fg_bold[yellow]%}%D%{$reset_color%}\e[${DW_BACK}D$(who_am_i) in $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
   DW_BACK=0
   (( DW_BACK = ${COLUMNS} - 1 ))
   DW_FW=0
   (( DW_FW = $DW_BACK - 8 ))
 
-  export RPROMPT=$'%{$fg_bold[cyan]%}%t%{$reset_color%}'
+  export RPROMPT=$'%{$fg_bold[yellow]%}%t%{$reset_color%}'
 }
 
 precmd() {

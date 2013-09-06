@@ -1,4 +1,9 @@
+# Vin Key Bindings
 bindkey -v
+
+# I still want Ctrl-R search
+bindkey -M viins '^r' history-incremental-search-backward
+bindkey -M vicmd '^r' history-incremental-search-backward
 
 # Home and End Key
 bindkey "^[[1~" beginning-of-line

@@ -123,10 +123,13 @@ syntax on
 " enable all the fun stuff
 filetype plugin indent on
 
-" colorscheme and font for GUI
+" colorscheme
+colorscheme solarized
+autocmd VimEnter,Colorscheme * :hi SignColumn ctermbg=8
+
+" gui font
 if has("gui_running")
-    colorscheme solarized
-    set guifont=DejaVu\ Sans\ Mono:h13
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h13
 endif
 
 " gnome terminal doesn't advertise it's 256 color support
@@ -144,9 +147,6 @@ map <F2> :NERDTreeToggle<CR>
 " Powerline
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_colorscheme = 'skwp'
-if has("gui_running")
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h13
-endif
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -167,11 +167,14 @@ let g:gitgutter_sign_modified = '±±'
 let g:gitgutter_sign_removed = '--'
 let g:gitgutter_sign_modified_removed = '∓∓'
 
-" Indent Guides
+" Indent Guides (needs lots of love)
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=black ctermbg=black
 
 " ----------------------------------------------------------------------------
 "  Custom Functions/Mappings

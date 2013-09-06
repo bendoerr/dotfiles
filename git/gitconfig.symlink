@@ -1,0 +1,76 @@
+[alias]
+    adda = add --all :/
+    addi = add --interactive
+    addt = add --update :/
+    bassdrop = !"git checkout DUBSTEP-WIP && git rebase master && git checkout master && git merge --ff-only DUBSTEP-WIP && git reset --soft HEAD~1 && git reset && git branch -D DUBSTEP-WIP"
+    co = checkout
+    cob = checkout -b
+    commitnm = commit --allow-empty-message -m ''
+    count   = !git shortlog -sn
+    d = diff --color-words
+    df = diff --staged --color-words
+    dubstep = !"git commit -a -m 'Dubstep WIP' && git branch DUBSTEP-WIP && git reset --hard canonical/master"
+    fix = commit --amend --reuse-message=HEAD
+    fixa = commit --all --amend --reuse-message=HEAD
+    go = !"git addt && git commit"
+    gogo = !"git plr && git push"
+    gogogo = !"git go && git gogo"
+    hiphop = !"git stash && git plr && git stash pop"
+    lg =  log --graph --pretty=format:'%C(yellow)%h%Creset%Cred->%Creset%w(120,0,10)%C(bold cyan)%d%Creset %s%n %Cgreen(%an)%Creset %C(bold blue)(%cr)%Creset%n' --abbrev-commit --relative-date --decorate=short --shortstat -10
+    lgc = log --graph --pretty=format:'%C(yellow)%h%Creset%Cred->%Creset%w(120,0,10)%C(bold cyan)%d%Creset %s%n %Cgreen(%an)%Creset %C(bold blue)(%cr)%Creset%n' --abbrev-commit --relative-date --decorate=short -5 --name-status
+    lgn = log --graph --pretty=format:'%C(yellow)%h%Creset%Cred->%Creset%w(120,0,10)%C(bold cyan)%d%Creset %s%n %Cgreen(%an)%Creset %C(bold blue)(%cr)%Creset%n' --abbrev-commit --relative-date --decorate=short -5 --stat=80,40
+    lgs = log --graph --pretty=format:'%C(yellow)%h%C(reset) | %an | %ar | %C(cyan)%s%C(reset) %d' --topo-order --decorate
+    ll = !git lg -1
+    llc = !git lgc -1
+    lln = !git lgn -1
+    mnf = merge --no-ff --log
+    plf = pull --ff-only
+    plr = pull --rebase
+    promote = !$ZSH/bin/git-promote
+    rank-contributers = !$ZSH/bin/git-rank-contributers
+    st = status --short --branch
+    stt = status --short --branch --untracked-files=no
+    wtf     = !$ZSH/bin/git-wtfA
+
+[apply]
+    whitespace = nowarn
+
+[branch]
+    autosetuprebase = always
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+
+[color "diff"]
+    old = bold red
+
+[core]
+    excludesfile = ~/.gitignore
+    editor = vim
+    pager = less
+
+[difftool]
+    prompt = false
+
+[help]
+    autocorrect = 1
+    format = man
+
+[log]
+    decorate = full
+
+[mergetool]
+    keepBackup = false
+
+[push]
+    default = upstream
+
+[rerere]
+    enabled = true
+
+[user]
+    name = Ben Doerr
+    email = ben.doerr@meddius.com

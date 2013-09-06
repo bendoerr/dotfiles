@@ -1,1 +1,2 @@
 git update-index --assume-unchanged zsh/zsh_history.symlink
+git update-index --assume-unchanged zsh/zcompdump.symlink

@@ -64,3 +64,6 @@
 [submodule "vim/vim.symlink/bundle/airline"]
 	path = vim/vim.symlink/bundle/airline
 	url = git://github.com/bling/vim-airline.git
+[submodule "z/z"]
+	path = z/z
+	url = git://github.com/rupa/z.git

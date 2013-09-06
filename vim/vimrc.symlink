@@ -125,6 +125,7 @@ filetype plugin indent on
 
 " colorscheme
 colorscheme solarized
+set background=dark
 autocmd VimEnter,Colorscheme * :hi SignColumn ctermbg=8
 
 " gui font

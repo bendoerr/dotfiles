@@ -74,10 +74,6 @@ todo() {
   fi
 }
 
-date() {
-    echo "%t"
-}
-
 directory_name(){
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }

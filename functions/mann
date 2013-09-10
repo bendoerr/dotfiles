@@ -1,0 +1,3 @@
+mann () {
+    man -P "ul | cat -s" $*
+}

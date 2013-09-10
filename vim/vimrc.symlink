@@ -143,7 +143,7 @@ endif
 " ----------------------------------------------------------------------------
 
 " NERDTree
-map <F2> :NERDTreeToggle<CR>
+map <silent> <F2> :NERDTreeToggle<CR>
 
 " Powerline
 let g:Powerline_symbols = 'fancy'
@@ -153,6 +153,7 @@ let g:Powerline_colorscheme = 'skwp'
 let g:airline_powerline_fonts = 1
 let g:airline_theme= 'solarized'
 let g:airline_solarized_bg='dark'
+"let g:airline_exclude_filetypes = ['nerdtree', 'tagbar']
 
 " Syntastic
 let g:syntastic_error_symbol = '✗✗'
@@ -161,8 +162,8 @@ let g:syntastic_warning_symbol = '∆∆'
 let g:syntastic_style_warning_symbol = '≈≈'
 
 " GitGutter
-map <F3> :GitGutterToggle<CR>
-map <F4> :GitGutterLineHighlightsToggle<CR>
+map <silent> <F3> :GitGutterToggle<CR>
+map <silent> <F4> :GitGutterLineHighlightsToggle<CR>
 let g:gitgutter_sign_added = '++'
 let g:gitgutter_sign_modified = '±±'
 let g:gitgutter_sign_removed = '--'
@@ -172,10 +173,16 @@ let g:gitgutter_sign_modified_removed = '∓∓'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar']
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=black ctermbg=black
+
+" Tagbar
+map <silent> <F5> :TagbarOpen fj<CR>
+map <silent> <F6> :TagbarClose<Cr>
+let g:tagbar_show_linenumbers = 0
+let g:tagbar_sort = 0
 
 " ----------------------------------------------------------------------------
 "  Custom Functions/Mappings

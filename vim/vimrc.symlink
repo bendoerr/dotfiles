@@ -209,3 +209,9 @@ map <leader>= :%s/></>\r</g<CR>:0<CR>=:$<CR> " TODO improve since if all tags
                                              " are already seperated by line,
                                              " it fails.
 
+" ----------------------------------------------------------------------------
+"  Language Specific
+" ----------------------------------------------------------------------------
+
+autocmd FileType java set tags=.tags;\,~/projects/external/jdk/.tags
+

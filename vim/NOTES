@@ -1,0 +1,9 @@
+Java Development
+
+    * JavaImp.vim : Insert and sort Java import statements, view JavaDoc from class name, and more.
+        http://www.vim.org/scripts/script.php?script_id=325
+
+    * javacomplete : Omni Completion for JAVA
+        http://www.vim.org/scripts/script.php?script_id=1785
+
+    * http://blog.vinceliu.com/2007/08/vim-tips-for-java-1-build-java-files.html

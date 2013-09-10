@@ -62,6 +62,15 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+" go to definition
+nnoremap gd <C-]>
+nnoremap gt <C-t>
+nnoremap <silent> gs :tselect<CR>
+
+" ' is easier and more useful, note tmux uses `
+nnoremap ' `
+nnoremap ` '
+
 " ----------------------------------------------------------------------------
 "  Display
 " ----------------------------------------------------------------------------
@@ -73,6 +82,7 @@ set title                       " show the filename in the window title
 set lazyredraw                  " faster on my old computers
 set wildmenu                    " enable wild menu
 set wildmode=list:longest,full  " list and match longest
+set wildignore+=*/tmp/*,*.so,*.swp,*.class
 set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 set report=0                    " report all lines changed
 set nostartofline               " stay in the same column
@@ -93,6 +103,8 @@ set list listchars=tab:\ \ ,trail:· " show some hidden things
 autocmd FocusLost * :wa             " save on focus lost
 set ttimeout
 set ttimeoutlen=50
+set mouse=a
+set tags=.tags;/                   " look for tags
 
 " ----------------------------------------------------------------------------
 "  Visual Notes
@@ -183,6 +195,10 @@ map <silent> <F5> :TagbarOpen fj<CR>
 map <silent> <F6> :TagbarClose<Cr>
 let g:tagbar_show_linenumbers = 0
 let g:tagbar_sort = 0
+
+" CtrlP
+nnoremap <silent> <C-p> :CtrlPTag<CR>
+let g:ctrlp_map = '<leader>p'
 
 " ----------------------------------------------------------------------------
 "  Custom Functions/Mappings

@@ -117,3 +117,6 @@ bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
 
 # Reload
 bind-key r source-file ~/.tmux.conf \; display-message "Reloaded"
+
+# Clear Scrollback Buffer
+bind-key k send-keys -R \; clear-history

@@ -33,6 +33,9 @@ set-option -g default-terminal "screen-256color"
 #set-option -g terminal-overrides \
 #        "xterm*:XT:smcup@:rmcup@:kUP5=\eOA:kDN5=\eOB:kLFT5=\eOD:kRIT5=\eOC"
 
+# Generate correct key sequences for arrow keys and such.
+set-option -g xterm-keys on
+
 # Scroll History
 set-option -g history-limit 100000
 

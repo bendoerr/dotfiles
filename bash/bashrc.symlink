@@ -112,8 +112,4 @@ shopt -s checkwinsize
 # ------------------------------------------------------------------------------
 #  Sanity
 # ------------------------------------------------------------------------------
-if [ -f ~/.sanity.sh ]; then
-    echo
-    sanity_check
-    echo
-fi
+hash platform-health-check 2>/dev/null && { echo; platform-health-check; echo; }

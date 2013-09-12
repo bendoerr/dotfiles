@@ -1,0 +1,119 @@
+# If not running interactively, Bail. Bail. Bail.
+[ -z "$PS1" ] && return
+
+# ------------------------------------------------------------------------------
+#  History
+# ------------------------------------------------------------------------------
+
+# don't put duplicate lines in the history
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# save a lot
+HISTSIZE=10000
+HISTFILESIZE=20000
+HISTFILE=~/.bash_history
+
+# ------------------------------------------------------------------------------
+#  Prompt
+# ------------------------------------------------------------------------------
+
+# just assume color
+C_SOLAR_LT_GREY="\[\033[1;33m\]"
+C_SOLAR_BR_GREY="\[\033[1;36m\]"
+C_SOLAR_BLUE="\[\033[34m\]"
+C_RESET="\[\033[0m\]"
+PS1="\n${C_SOLAR_LT_GREY}\u${C_RESET} on ${C_SOLAR_BLUE}\h${C_RESET} in ${C_SOLAR_BR_GREY}\w${C_RESET}\n› "
+
+# ------------------------------------------------------------------------------
+#  Colors & Aliases
+# ------------------------------------------------------------------------------
+
+# enable color support of ls and stuff
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias lsa='ls -lAh'
+alias l='ls -lA'
+alias ll='ls -l'
+alias la='ls -lA'
+alias sl=ls # often screw this up
+
+# less
+alias less='less -R'
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# ------------------------------------------------------------------------------
+#  Source External
+# ------------------------------------------------------------------------------
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# ------------------------------------------------------------------------------
+#  Make Bash Better©
+# ------------------------------------------------------------------------------
+
+# A command name that is the name of a directory is executed as if it were the
+# argument to the cd command.
+shopt -s autocd
+
+# Minor errors in the spelling of a directory component in a cd command will be
+# corrected.
+shopt -s cdspell
+
+# Bash checks that a command found in the hash table exists before trying to
+# execute it. If a hashed command no longer exists, a normal path search is
+# performed.
+shopt -s checkhash
+
+#  Bash attempts to save all lines of a multiple-line command in the same
+#  history entry.
+shopt -s cmdhist
+
+# Bash attempts spelling correction on directory names during word completion
+# if the directory name initially supplied does not exist.
+shopt -s dirspell
+
+# The pattern ‘**’ used in a filename expansion context will match all files
+# and zero or more directories and subdirectories. If the pattern is followed
+# by a ‘/’, only directories and subdirectories match.
+shopt -s globstar
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# For more awesomeness see .inputrc
+
+# ------------------------------------------------------------------------------
+#  Sanity
+# ------------------------------------------------------------------------------
+if [ -f ~/.sanity.sh ]; then
+    echo
+    sanity_check
+    echo
+fi

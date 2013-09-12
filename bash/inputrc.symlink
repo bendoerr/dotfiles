@@ -1,0 +1,89 @@
+# ------------------------------------------------------------------------------
+#  Completion
+# ------------------------------------------------------------------------------
+
+# Readline performs filename matching and completion in a case-insensitive
+# fashion. The default value is ‘off’.
+set completion-ignore-case on
+
+# Readline treats hyphens (‘-’) and underscores (‘_’) as equivalent when
+# performing case-insensitive filename matching and completion.
+set completion-map-case on
+
+# The length in characters of the common prefix of a list of possible
+# completions that is displayed without modification. When set to a value
+# greater than zero, common prefixes longer than this value are replaced with
+# an ellipsis when displaying possible completions.
+set completion-prefix-display-length 10
+
+# This alters the default behavior of the completion functions. If set to ‘on’,
+# words which have more than one possible completion cause the matches to be
+# listed immediately instead of ringing the bell. The default value is ‘off’.
+set show-all-if-ambiguous on
+
+# This alters the default behavior of the completion functions in a fashion
+# similar to show-all-if-ambiguous. If set to ‘on’, words which have more than
+# one possible completion without any possible partial completion (the possible
+# completions don’t share a common prefix) cause the matches to be listed
+# immediately instead of ringing the bell. The default value is ‘off’.
+set show-all-if-unmodified on
+
+# If set to ‘on’, menu completion displays the common prefix of the list of
+# possible completions (which may be empty) before cycling through the list.
+# The default is ‘off’.
+set menu-complete-display-prefix off
+
+# If set to ‘on’, Readline will display completions with matches sorted
+# horizontally in alphabetical order, rather than down the screen. The default
+# is ‘off’.
+set print-completions-horizontally on
+
+# If set to ‘on’, this alters the default completion behavior when inserting a
+# single match into the line. It’s only active when performing completion in
+# the middle of a word. If enabled, readline does not insert characters from
+# the completion that match characters after point in the word being completed,
+# so portions of the word following the cursor are not duplicated. For
+# instance, if this is enabled, attempting completion when the cursor is after
+# the ‘e’ in ‘Makefile’ will result in ‘Makefile’ rather than ‘Makefilefile’,
+# assuming there is a single possible completion. The default value is ‘off’.
+set skip-completed-text on
+
+# ------------------------------------------------------------------------------
+#  Key Bindings
+# ------------------------------------------------------------------------------
+
+# Use Vi, not Emacs, style editing
+# http://vim.wikia.com/wiki/Use_vi_shortcuts_in_terminal
+set editing-mode vi
+
+# Keymaps for when we're in command mode (e.g., after hitting ESC)
+set keymap vi-command
+
+# Insert the arguments from the last command
+"p": "i !!*\r"
+
+# Keymaps for when we're in insert (i.e., typing stuff in) mode
+set keymap vi-insert
+
+# Similar to complete, but replaces the word to be completed with a single
+# match from the list of possible completions. Repeated execution of
+# menu-complete steps through the list of possible completions, inserting each
+# match in turn. At the end of the list of completions, the bell is rung
+# (subject to the setting of bell-style) and the original text is restored. An
+# argument of n moves n positions forward in the list of matches; a negative
+# argument may be used to move backward through the list. This command is
+# intended to be bound to TAB, but is unbound by default.
+#Tab:      menu-complete
+
+# Actually leave tab as 'complete' and use Shift-Tab for menu complete
+"\e[Z":      menu-complete
+
+# Shift-TAB cycles completions backward
+#"\e[Z": menu-complete-backward
+
+# Perform history expansion on the current line and insert a space
+Space: magic-space
+
+# Needed because binding 'p' in command mode above wipes its insert mode
+# # function, too. This fixes that, and will insert 'p' when you type 'p'.
+"p": self-insert

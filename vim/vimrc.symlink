@@ -27,6 +27,10 @@ let mapleader = ","
 " exit normal mode with 'jj', when do you ever type 'jj' anyway
 inoremap jj <ESC>
 
+" exit normal mode with 'kk' as well, there are some words like bookkeeper
+" though, but they are few
+inoremap kk <ESC>
+
 " shortcut to use 'Q' to reflow paragraphs
 nnoremap Q gqap
 vnoremap Q gq

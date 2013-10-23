@@ -218,4 +218,5 @@ map <leader>= :%s/></>\r</g<CR>:0<CR>=:$<CR> " TODO improve since if all tags
 " ----------------------------------------------------------------------------
 
 autocmd FileType java set tags=.tags;\,~/projects/external/jdk/.tags
+autocmd FileType groovy set tags=.tags;\,~/projects/external/jdk/.tags
 

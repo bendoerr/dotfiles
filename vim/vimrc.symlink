@@ -202,6 +202,7 @@ let g:tagbar_sort = 0
 
 " CtrlP
 nnoremap <silent> <C-p> :CtrlPTag<CR>
+nnoremap <silent> <C-o> :CtrlPTag<CR>
 let g:ctrlp_map = '<leader>p'
 
 " ----------------------------------------------------------------------------

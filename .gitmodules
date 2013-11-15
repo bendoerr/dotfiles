@@ -67,3 +67,6 @@
 [submodule "z/z"]
 	path = z/z
 	url = git://github.com/rupa/z.git
+[submodule "vim/vim.symlink/bundle/javacomplete"]
+	path = vim/vim.symlink/bundle/javacomplete
+	url = git@github.com:vim-scripts/javacomplete.git

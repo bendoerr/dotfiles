@@ -218,6 +218,12 @@ map <leader>= :%s/></>\r</g<CR>:0<CR>=:$<CR> " TODO improve since if all tags
 "  Language Specific
 " ----------------------------------------------------------------------------
 
-autocmd FileType java set tags=.tags;\,~/projects/external/jdk/.tags
-autocmd FileType groovy set tags=.tags;\,~/projects/external/jdk/.tags
+autocmd FileType java
+        \ set tags=.tags;\,~/projects/external/jdk/.tags |
+        \ set omnifunc=javacomplete#Complete |
+        \ set completefunc=javacomplete#CompleteParamsInfo |
+        \ inoremap <C-@> <C-X><C-P>
+autocmd FileType groovy
+        \ set tags=.tags;\,~/projects/external/jdk/.tags |
+        \ inoremap <C-@> <C-X><C-P>
 

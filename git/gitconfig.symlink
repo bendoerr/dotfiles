@@ -74,6 +74,9 @@
 [push]
     default = upstream
 
+[pull]
+    rebase = preserve
+
 [rerere]
     enabled = true
 

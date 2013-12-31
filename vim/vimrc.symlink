@@ -206,24 +206,5 @@ nnoremap <silent> <C-o> :CtrlPTag<CR>
 let g:ctrlp_map = '<leader>p'
 
 " ----------------------------------------------------------------------------
-"  Custom Functions/Mappings
+"  The End
 " ----------------------------------------------------------------------------
-
-" Format XML
-map <leader>= :%s/></>\r</g<CR>:0<CR>=:$<CR> " TODO improve since if all tags
-                                             " are already seperated by line,
-                                             " it fails.
-
-" ----------------------------------------------------------------------------
-"  Language Specific
-" ----------------------------------------------------------------------------
-
-autocmd FileType java
-        \ set tags=.tags;\,~/projects/external/jdk/.tags |
-        \ set omnifunc=javacomplete#Complete |
-        \ set completefunc=javacomplete#CompleteParamsInfo |
-        \ inoremap <C-@> <C-X><C-P>
-autocmd FileType groovy
-        \ set tags=.tags;\,~/projects/external/jdk/.tags |
-        \ inoremap <C-@> <C-X><C-P>
-

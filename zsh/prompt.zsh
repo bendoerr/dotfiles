@@ -9,12 +9,12 @@ git_branch() {
 }
 
 git_dirty() {
-  st=$($WHICHGIT status 2>/dev/null | tail -n 1)
-  if [[ $st == "" ]]
+  st=$(expr $($WHICHGIT status --porcelain 2>/dev/null | grep -v "^??" | wc -l))
+  if [[ "$st" == "" ]]
   then
     echo ""
   else
-    if [[ $st == "nothing to commit, working directory clean" ]]
+    if [[ "$st" == "0" ]]
     then
       echo "on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
     else

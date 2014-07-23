@@ -1,12 +1,6 @@
 autoload colors && colors
-# cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
 export WHICHGIT=$(which git)
-
-git_branch() {
-  echo $($WHICHGIT symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
-}
 
 git_dirty() {
   st=$(expr $($WHICHGIT status --porcelain 2>/dev/null | grep -v "^??" | wc -l))
@@ -25,7 +19,6 @@ git_dirty() {
 
 git_prompt_info () {
  ref=$($WHICHGIT symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
  echo "${ref#refs/heads/}"
 }
 

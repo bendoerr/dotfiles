@@ -1,7 +1,7 @@
 alias reload!='. ~/.zshrc'
 
 # Push and pop directories on directory stack
-alias pu='pushd'
+alias pd='pushd'
 alias po='popd'
 
 # Basic directory operations

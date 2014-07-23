@@ -97,8 +97,8 @@ set nostartofline               " stay in the same column
 set backspace=indent,eol,start      " allow backspacing on anything
 set complete-=i                     " TODO
 set whichwrap+=<,>,h,l,[,]          " backspace and cursor keys wrap
-set backup                          " don't forget to cleanup sometimes
-set backupdir=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+"set backup                          " don't forget to cleanup sometimes
+"set backupdir=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set hidden                          " buffers are hidden when abandoned
 set encoding=utf-8                  " write with utf-8 encoding

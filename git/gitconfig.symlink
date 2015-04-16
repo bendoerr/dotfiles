@@ -25,7 +25,7 @@
     lln = !git lgn -1
     mnf = merge --no-ff --log
     plf = pull --ff-only
-    plr = pull --rebase
+    plr = pull --rebase=preserve
     promote = !$ZSH/bin/git-promote
     rank-contributers = !$ZSH/bin/git-rank-contributers
     st = status --short --branch

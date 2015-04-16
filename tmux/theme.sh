@@ -30,9 +30,9 @@ fi
 if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
 		#"rainbarf 0 0" \
-		"now_playing 8 13" \
-		"mailcount 0 7" \
-		"weatherpretty 0 7 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
+		"weatherpretty 0 7"  \
+		"now_playing 8 13 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
+		#"mailcount 0 7" \
 		#"date_day 3 8" \
 		#"date 3 0 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 		#"time 3 0 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \

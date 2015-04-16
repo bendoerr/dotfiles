@@ -73,3 +73,6 @@
 [submodule "vim/vim.symlink/bundle/arduino-ino"]
 	path = vim/vim.symlink/bundle/arduino-ino
 	url = git@github.com:jplaut/vim-arduino-ino.git
+[submodule "vim/vim.symlink/bundle/thrift"]
+	path = vim/vim.symlink/bundle/thrift
+	url = https://github.com/solarnz/thrift.vim.git

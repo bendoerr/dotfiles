@@ -82,7 +82,7 @@ set keymap vi-insert
 #"\e[Z": menu-complete-backward
 
 # Perform history expansion on the current line and insert a space
-Space: magic-space
+#Space: magic-space
 
 # Needed because binding 'p' in command mode above wipes its insert mode
 # # function, too. This fixes that, and will insert 'p' when you type 'p'.

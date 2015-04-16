@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+# Fail Fast
+set -e
+
+# Arg - Hostname
+thehost=$1
+
+cd .dotfiles
+git-archive-all --prefix=.dotfiles ~/dotfiles.tar
+cd ..
+gzip -c ~/dotfiles.tar > ~/dotfiles.tar.gz
+
+scp dotfiles.tar.gz "$thehost":~
+ssh -t "$thehost" "tar xf dotfiles.tar.gz && cd .dotfiles && ./script/bootstrap && cd .. && rm dotfiles.tar.gz"

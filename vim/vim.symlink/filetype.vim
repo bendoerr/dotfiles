@@ -21,3 +21,4 @@ augroup END
 "        \ set tags=.tags;\,~/projects/external/jdk/.tags |
 "        \ inoremap <C-@> <C-X><C-P>
 
+autocmd FileType crontab setlocal nowritebackup

@@ -2,18 +2,22 @@
 #  Prefix Key
 # ------------------------------------------------------------------------------
 
-# Leave the C-b prefix in place for now.
+# Backtick is an excellent escape key for me. I don't use really ever use it
+# for shell evaluation but rather $() since I can nest and quote without
+# additional cognitive load.
 
-# Use a secondary/alternate prefix of backtick
+# Use the secondary prefix and leave C-b in place.
 unbind-key `
 set-option -g prefix2 `
 
 # Ensure `` sends a single backtick
 bind-key ` send-prefix -2
 
-# Enable/Disable backtick prefix
+# Enable/Disable backtick prefix. I've never needed to use these but I'll
+# continue to leave them here (2016-05-10).
 bind-key F11 set-option -g prefix2 C-a \; \
         display-message "Unbound ` as Tmux Prefix. Use C-b F12 to re-enable."
+
 bind-key F12 set-option -g prefix2 ` \; \
         display-message "Bound ` as Tmux Prefix. Use C-b F11 to disable."
 
@@ -22,83 +26,40 @@ bind-key F12 set-option -g prefix2 ` \; \
 #  System Behavior
 # ------------------------------------------------------------------------------
 
-# Attach OSX User Namespace for Copy & Paste
-set-option -g default-command "reattach-to-user-namespace -l zsh"
+# TODO 2016-05-10 - Consider switching most of this with tmux-sensible plugin.
+# See: https://github.com/tmux-plugins/tmux-sensible
 
 # Report 256 Color Support
 set-option -g default-terminal "screen-256color"
 
-# Allow xterm titles in terminal window, terminal scrolling with scrollbar, and
-# setting overrides of C-Up, C-Down, C-Left, C-Right
-#set-option -g terminal-overrides \
-#        "xterm*:XT:smcup@:rmcup@:kUP5=\eOA:kDN5=\eOB:kLFT5=\eOD:kRIT5=\eOC"
+# UTF-8 Support
+# https://github.com/tmux/tmux/issues/230
+#set-option -g utf8 on
+#set-option -g status-utf8 on
 
 # Generate correct key sequences for arrow keys and such.
-set-option -g xterm-keys on
+# TODO 2016-05-10 -  Test with this disabled for comparison.
+set-option -gw xterm-keys on
 
-# Scroll History
+# Scroll History. Tmux doesn't support unlimited scrollback so here we set it
+# to something large enough.
 set-option -g history-limit 100000
 
 # Set ability to capture on start and restore on exit window data when running
-# an application like VIM
-set-window-option -g alternate-screen on
+# an application like VIM or LESS.
+# NOTE 2016-05-10 - Make sure '$LESS' doesn't include '-X'
+set-option -g alternate-screen on
 
-# Lower escape timing from 500ms to 50ms for quicker response to scroll-buffer
+# Lower escape timing from 500ms to 0ms for quicker response to scroll-buffer
+# and instantaneous switching between VIM shell modes.
 set-option -sg escape-time 0
 
 # Just... I know I pressed the wrong key. Shush.
-set-option -g bell-on-alert off
-set-option -g visual-bell off
+set-option -gw bell-on-alert off
+set-option -gw visual-bell off
 
-
-# ------------------------------------------------------------------------------
-#  Status Bar
-# ------------------------------------------------------------------------------
-
-# TODO locate tmux-powerline in a more consistent place.
-set-option -g status on
-set-option -g status-bg brightblack
-set-option -g status-fg brightblue
-set-option -g status-interval 2
-set-option -g status-justify "left"
-set-option -g status-left \
-        "#(~/projects/personal/tmux-powerline/powerline.sh left)"
-set-option -g status-left-length 60
-set-option -g status-right \
-        "#(~/projects/personal/tmux-powerline/powerline.sh right)"
-set-option -g status-right-length 90
-set-option -g status-utf8 on
-
-# Current Window
-set-option -g window-status-current-attr bold
-set-option -g window-status-current-format '#I:#W'
-set-option -g window-status-current-fg brightcyan
-set-option -g window-status-current-bg brightblack
-
-
-# ------------------------------------------------------------------------------
-#  Mice
-# ------------------------------------------------------------------------------
-
-# Make mouse useful
-set-window-option -g mode-mouse on
-set-option -g mouse-select-pane on
-#set-option -g mouse-resize-pane on # Seems to cause death.
-set-option -g mouse-select-window on
-
-# After select with mouse, press PREFIX y to copy.
-bind-key y run-shell \
-        "reattach-to-user-namespace -l zsh -c 'tmux show-buffer | pbcopy'"
-
-
-# ------------------------------------------------------------------------------
-#  Message Bar
-# ------------------------------------------------------------------------------
-
-#set-option -g message-fg brightblue
-#set-option -g message-bg yellow
-#set-option -g message-command-fg brightblue
-#set-option -g message-command-bg yellow
+# Display TMUX messages for longer
+set-option -g display-time 3000
 
 
 # ------------------------------------------------------------------------------
@@ -111,12 +72,98 @@ set-window-option -g mode-keys vi
 # Copy & Paste Behavior
 bind-key -t vi-copy 'v' begin-selection
 bind-key -t vi-copy 'y' copy-selection
-bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
+bind-key -t vi-copy y copy-pipe "pbcopy"
 unbind -t vi-copy Enter
-bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+bind-key -t vi-copy Enter copy-pipe "pbcopy"
 
 # Reload
 bind-key r source-file ~/.tmux.conf \; display-message "Reloaded"
 
 # Clear Scrollback Buffer
 bind-key k send-keys -R \; clear-history
+
+
+# ------------------------------------------------------------------------------
+#  Mice
+# ------------------------------------------------------------------------------
+
+# Mouse support was completely changed with 2.1, we only need this now
+# ... and a plugin.
+# ... and some new options for scroll
+set-option -g mouse on
+
+# After select with mouse, press PREFIX y to copy.
+bind-key y run-shell \
+        "reattach-to-user-namespace -l zsh -c 'tmux show-buffer | pbcopy'"
+
+# ------------------------------------------------------------------------------
+#  Mouse Scroll
+# ------------------------------------------------------------------------------
+
+# Restore and tweak the pre-2.1 behavior
+# See: https://github.com/NHDaly/tmux-scroll-copy-mode
+set-option -g @plugin "nhdaly/tmux-scroll-copy-mode"
+set-option -g @emulate-scroll-for-no-mouse-alternate-buffer "on"
+set-option -g @scroll-without-changing-pane "on"
+
+
+# ------------------------------------------------------------------------------
+#  Status Bar
+# ------------------------------------------------------------------------------
+
+# See https://github.com/tmux-plugins/tmux-prefix-highlight
+set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+set -g @prefix_highlight_fg 'colour08'
+set -g @prefix_highlight_bg 'colour04'
+set -g @prefix_highlight_show_copy_mode 'on'
+set -g @prefix_highlight_copy_mode_attr 'fg=colour08,bg=colour04'
+
+# The status bar is powered by https://github.com/erikw/tmux-powerline
+# This project has been generally deprecated in favor of the more heavy
+# https://github.com/Lokaltog/powerline project which is based on a python
+# backend and unifies multiple powerlines across tools. I haven't been
+# successful parsing their documentation on how to setup the tmux powerline.
+#
+# Configuration Files
+# /opt/projects/dotfiles/tmux/theme.sh
+# /opt/projects/dotfiles/tmux/tmux-powerlinerc.symlink
+# /opt/projects/dotfiles/tmux/weatherpretty.sh
+#
+# Tmux-Powerline Install Path
+# /opt/sources/tmux-powerline
+
+set-option -g status on
+set-option -g status-interval 2
+
+# Left Status Bar
+set-option -g status-justify "left"
+set-option -g status-left \
+        "#{prefix_highlight}#(/opt/sources/tmux-powerline/powerline.sh left)"
+set-option -g status-left-length 60
+
+# Right Status Bar
+set-option -g status-right \
+        "#(/opt/sources/tmux-powerline/powerline.sh right)"
+set-option -g status-right-length 90
+
+# Adjust Status Bar Scheme
+set-option -g status-bg brightblack
+set-option -g status-fg brightblue
+
+# Adjust Current Window Scheme
+set-option -g window-status-current-attr bold
+set-option -g window-status-current-format '#I:#W'
+set-option -g window-status-current-fg brightcyan
+set-option -g window-status-current-bg brightblack
+
+
+# ------------------------------------------------------------------------------
+#  Enable Tmux Plugin Manager
+# ------------------------------------------------------------------------------
+
+# See: https://github.com/tmux-plugins/tpm
+set-option -g @plugin 'tmux-plugins/tpm'
+
+# Aught to be last
+run '~/.tmux/plugins/tpm/tpm'
+

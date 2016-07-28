@@ -118,3 +118,6 @@ hash platform-health-check 2>/dev/null && { echo; platform-health-check; echo; }
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 [[ -s "/Users/bdoerr/.gvm/bin/gvm-init.sh" ]] && source "/Users/bdoerr/.gvm/bin/gvm-init.sh"
+
+# added by travis gem
+[ -f /Users/bdoerr/.travis/travis.sh ] && source /Users/bdoerr/.travis/travis.sh

@@ -1,0 +1,1 @@
+/opt/projects/dotfiles/bash/bashrc.symlink

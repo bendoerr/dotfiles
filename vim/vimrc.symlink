@@ -87,7 +87,6 @@ set lazyredraw                  " faster on my old computers
 set wildmenu                    " enable wild menu
 set wildmode=list:longest,full  " list and match longest
 set wildignore+=*/tmp/*,*.so,*.swp,*.class
-set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 set report=0                    " report all lines changed
 set nostartofline               " stay in the same column
 
@@ -172,7 +171,9 @@ let g:Powerline_colorscheme = 'skwp'
 let g:airline_powerline_fonts = 1
 let g:airline_theme= 'solarized'
 let g:airline_solarized_bg='dark'
-"let g:airline_exclude_filetypes = ['nerdtree', 'tagbar']
+let g:airline_exclude_filetypes = ['nerdtree', 'tagbar']
+
+
 
 " Syntastic
 let g:syntastic_error_symbol = '✗✗'

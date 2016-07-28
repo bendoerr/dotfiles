@@ -1,7 +1,4 @@
 # Default configuration file for tmux-powerline.
-# Modeline {
-#	 vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=4 filetype=sh
-# }
 
 # General {
 	# Show which segment fails and its exit code.
@@ -11,14 +8,14 @@
 	# The theme to use.
 	export TMUX_POWERLINE_THEME="theme"
 	# Overlay dirctory to look for themes. There you can put your own themes outside the repo. Fallback will still be the "themes" directory in the repo.
-	export TMUX_POWERLINE_DIR_USER_THEMES="~/.dotfiles/tmux"
+	export TMUX_POWERLINE_DIR_USER_THEMES="/opt/projects/dotfiles/tmux"
 	# Overlay dirctory to look for segments. There you can put your own segments outside the repo. Fallback will still be the "segments" directory in the repo.
-	export TMUX_POWERLINE_DIR_USER_SEGMENTS="~/.dotfiles/tmux"
+	export TMUX_POWERLINE_DIR_USER_SEGMENTS="/opt/projects/dotfiles/tmux"
 # }
 
 # battery.sh {
 	# How to display battery remaining. Can be {percentage, cute}.
-	export TMUX_POWERLINE_SEG_BATTERY_TYPE="cute"
+	export TMUX_POWERLINE_SEG_BATTERY_TYPE="percentage"
 	# How may hearts to show if cute indicators are used.
 	export TMUX_POWERLINE_SEG_BATTERY_NUM_HEARTS="5"
 # }
@@ -52,7 +49,7 @@
 
 # mailcount.sh {
 	# Mailbox type to use. Can be any of {apple_mail, gmail, maildir, mbox, mailcheck}
-	export TMUX_POWERLINE_SEG_MAILCOUNT_MAILBOX_TYPE="gmail"
+	export TMUX_POWERLINE_SEG_MAILCOUNT_MAILBOX_TYPE="mbox"
 	
 	## Gmail
 	# Enter your Gmail username here WITH OUT @gmail.com.( OR @domain)
@@ -75,7 +72,7 @@
 	
 	## mbox
 	# Path to the mbox to check.
-	export TMUX_POWERLINE_SEG_MAILCOUNT_MBOX_INBOX=""
+	export TMUX_POWERLINE_SEG_MAILCOUNT_MBOX_INBOX="/var/mail/bdoerr"
 	
 	## mailcheck
 	# Optional path to mailcheckrc
@@ -84,7 +81,7 @@
 
 # now_playing.sh {
 	# Music player to use. Can be any of {audacious, banshee, cmus, itunes, lastfm, mocp, mpd, mpd_simple, pithos, rdio, rhythmbox, spotify, spotify_wine}.
-	export TMUX_POWERLINE_SEG_NOW_PLAYING_MUSIC_PLAYER=""
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_MUSIC_PLAYER="spotify"
 	# Maximum output length.
 	export TMUX_POWERLINE_SEG_NOW_PLAYING_MAX_LEN="40"
 	# How to handle too long strings. Can be {trim, roll}.
@@ -131,5 +128,6 @@
 	# 1. Go to Yahoo weather http://weather.yahoo.com/
 	# 2. Find the weather for you location
 	# 3. Copy the last numbers in that URL. e.g. "http://weather.yahoo.com/united-states/california/newport-beach-12796587/" has the numbers "12796587"
-	export TMUX_POWERLINE_SEG_WEATHER_LOCATION="2387875"
+    # https://www.yahoo.com/news/weather/united-states/virginia/charlottesville-12767089
+	export TMUX_POWERLINE_SEG_WEATHER_LOCATION="12767089"
 # }

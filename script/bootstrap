@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#! /bin/bash
 #
 # bootstrap installs things.
 
-DOTFILES_ROOT="`pwd`"
+DOTFILES_ROOT="/opt/projects/dotfiles"
 
 set -e
 
@@ -27,14 +27,14 @@ fail () {
 }
 
 link_files () {
-  ln -s $1 $2
+  ln -sf $1 $2
   success "linked $1 to $2"
 }
 
 install_dotfiles () {
   info 'installing dotfiles'
 
-  overwrite_all=false
+  overwrite_all=true
   backup_all=false
   skip_all=false
 

@@ -121,3 +121,6 @@ hash platform-health-check 2>/dev/null && { echo; platform-health-check; echo; }
 
 # added by travis gem
 [ -f /Users/bdoerr/.travis/travis.sh ] && source /Users/bdoerr/.travis/travis.sh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

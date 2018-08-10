@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+
+if [[ -z "$(dig +short inside.premierinc.com)" ]]; then
+    . ~/sbin/common/enable_proxy.sh
+fi
+
+BREW=/usr/local/bin/brew
+LOGFILE=/var/log/homebrew-system-update.log
+
+echo "Homebrew System Update/Upgrade" > $LOGFILE 2>&1 \
+    && date >> $LOGFILE 2>&1 \
+    && echo >> $LOGFILE \
+    && echo "Executing 'brew update':" >> $LOGFILE \
+    && $BREW update >> $LOGFILE 2>&1 \
+    && echo >> $LOGFILE \
+    && echo "Executing 'brew upgrade':" >> $LOGFILE \
+    && $BREW upgrade >> $LOGFILE 2>&1 \
+    && echo >> $LOGFILE \
+    && echo "Executing 'brew cleanup':" >> $LOGFILE \
+    && $BREW cleanup >> $LOGFILE 2>&1 \
+    && echo >> $LOGFILE \
+    && echo "Executing 'brew doctor':" >> $LOGFILE \
+    && $BREW doctor >> $LOGFILE 2>&1
+
+if [ $? -ne 0 ]; then
+    mail -s "Homebrew System Update Failed" bdoerr < $LOGFILE
+else
+    mail -s "Homebrew System Update Success" bdoerr < $LOGFILE
+fi
+
+

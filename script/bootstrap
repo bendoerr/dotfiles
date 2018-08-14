@@ -2,7 +2,7 @@
 #
 # bootstrap installs things.
 
-DOTFILES_ROOT="/opt/projects/dotfiles"
+DOTFILES_ROOT="$HOME/Projects/dotfiles"
 
 set -e
 

@@ -1,0 +1,45 @@
+{
+	"segments": {
+		"left": [
+			{
+				"function": "powerline.segments.common.net.hostname"
+			},
+			{
+				"function": "powerline.segments.common.bat.battery",
+				"args": {
+					"gamify": true,
+					"offline": ""
+				}
+			}
+		],
+		"right": [
+			{
+				"function": "powerline.segments.common.players.itunes"
+			},
+			{
+				"function": "powerline.segments.common.players.spotify_apple_script"
+			},
+			{
+				"function": "powerline.segments.common.wthr.weather",
+				"args": {
+					"location_query": "crozet, va",
+					"unit": "F"
+				}
+			},
+			{
+				"function": "powerline.segments.common.sys.system_load"
+			},
+			{
+				"function": "powerline.segments.common.time.date"
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			}
+		]
+	}
+}

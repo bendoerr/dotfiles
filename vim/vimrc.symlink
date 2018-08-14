@@ -122,11 +122,34 @@ set visualbell      " stfu
 set scrolloff=2     " keep two lines before cursor when scrolling
 
 " ----------------------------------------------------------------------------
-"  Pathogen
+"  Plugins
 " ----------------------------------------------------------------------------
-runtime /bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Townk/vim-autoclose'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'stevearc/vim-arduino'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-syntastic/syntastic'
+
+
+call vundle#end()
 
 " ----------------------------------------------------------------------------
 "  Colors and Filetype Fun

@@ -26,24 +26,12 @@ bind-key F12 set-option -g prefix2 ` \; \
 #  System Behavior
 # ------------------------------------------------------------------------------
 
-# TODO 2016-05-10 - Consider switching most of this with tmux-sensible plugin.
-# See: https://github.com/tmux-plugins/tmux-sensible
-
 # Report 256 Color Support
 set-option -g default-terminal "screen-256color"
-
-# UTF-8 Support
-# https://github.com/tmux/tmux/issues/230
-#set-option -g utf8 on
-#set-option -g status-utf8 on
 
 # Generate correct key sequences for arrow keys and such.
 # TODO 2016-05-10 -  Test with this disabled for comparison.
 set-option -gw xterm-keys on
-
-# Scroll History. Tmux doesn't support unlimited scrollback so here we set it
-# to something large enough.
-set-option -g history-limit 100000
 
 # Set ability to capture on start and restore on exit window data when running
 # an application like VIM or LESS.
@@ -55,11 +43,8 @@ set-option -g alternate-screen on
 set-option -sg escape-time 0
 
 # Just... I know I pressed the wrong key. Shush.
-set-option -gw bell-on-alert off
+#set-option -gw bell-on-alert off
 set-option -gw visual-bell off
-
-# Display TMUX messages for longer
-set-option -g display-time 3000
 
 
 # ------------------------------------------------------------------------------
@@ -68,13 +53,6 @@ set-option -g display-time 3000
 
 # VI Keybindings
 set-window-option -g mode-keys vi
-
-# Copy & Paste Behavior
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
-bind-key -t vi-copy y copy-pipe "pbcopy"
-unbind -t vi-copy Enter
-bind-key -t vi-copy Enter copy-pipe "pbcopy"
 
 # Reload
 bind-key r source-file ~/.tmux.conf \; display-message "Reloaded"
@@ -92,9 +70,6 @@ bind-key k send-keys -R \; clear-history
 # ... and some new options for scroll
 set-option -g mouse on
 
-# After select with mouse, press PREFIX y to copy.
-bind-key y run-shell \
-        "reattach-to-user-namespace -l zsh -c 'tmux show-buffer | pbcopy'"
 
 # ------------------------------------------------------------------------------
 #  Mouse Scroll
@@ -102,59 +77,20 @@ bind-key y run-shell \
 
 # Restore and tweak the pre-2.1 behavior
 # See: https://github.com/NHDaly/tmux-scroll-copy-mode
-set-option -g @plugin "nhdaly/tmux-scroll-copy-mode"
-set-option -g @emulate-scroll-for-no-mouse-alternate-buffer "on"
-set-option -g @scroll-without-changing-pane "on"
+#set-option -g @plugin "nhdaly/tmux-scroll-copy-mode"
+#set-option -g @emulate-scroll-for-no-mouse-alternate-buffer "on"
+#set-option -g @scroll-without-changing-pane "on"
 
 
 # ------------------------------------------------------------------------------
 #  Status Bar
 # ------------------------------------------------------------------------------
 
-# See https://github.com/tmux-plugins/tmux-prefix-highlight
-set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
-set -g @prefix_highlight_fg 'colour08'
-set -g @prefix_highlight_bg 'colour04'
-set -g @prefix_highlight_show_copy_mode 'on'
-set -g @prefix_highlight_copy_mode_attr 'fg=colour08,bg=colour04'
+run-shell "powerline-daemon -q"
+source "/Users/bdoerr/Library/Python/2.7/lib/python/site-packages/powerline/bindings/tmux/powerline.conf"
 
-# The status bar is powered by https://github.com/erikw/tmux-powerline
-# This project has been generally deprecated in favor of the more heavy
-# https://github.com/Lokaltog/powerline project which is based on a python
-# backend and unifies multiple powerlines across tools. I haven't been
-# successful parsing their documentation on how to setup the tmux powerline.
-#
-# Configuration Files
-# /opt/projects/dotfiles/tmux/theme.sh
-# /opt/projects/dotfiles/tmux/tmux-powerlinerc.symlink
-# /opt/projects/dotfiles/tmux/weatherpretty.sh
-#
-# Tmux-Powerline Install Path
-# /opt/sources/tmux-powerline
-
-set-option -g status on
-set-option -g status-interval 2
-
-# Left Status Bar
-set-option -g status-justify "left"
-set-option -g status-left \
-        "#{prefix_highlight}#(/opt/sources/tmux-powerline/powerline.sh left)"
-set-option -g status-left-length 60
-
-# Right Status Bar
-set-option -g status-right \
-        "#(/opt/sources/tmux-powerline/powerline.sh right)"
-set-option -g status-right-length 90
-
-# Adjust Status Bar Scheme
-set-option -g status-bg brightblack
-set-option -g status-fg brightblue
-
-# Adjust Current Window Scheme
-set-option -g window-status-current-attr bold
-set-option -g window-status-current-format '#I:#W'
-set-option -g window-status-current-fg brightcyan
-set-option -g window-status-current-bg brightblack
+set-option -g status-left-length 100
+set-option -g status-right-length 150
 
 
 # ------------------------------------------------------------------------------
@@ -162,8 +98,8 @@ set-option -g window-status-current-bg brightblack
 # ------------------------------------------------------------------------------
 
 # See: https://github.com/tmux-plugins/tpm
-set-option -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
 
 # Aught to be last
 run '~/.tmux/plugins/tpm/tpm'
-

@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+#
+# ZSH Configuration
+#
+
+export CONF_DIR="/Users/bdoerr/Projects/dotfiles/zsh"
+
+source "$HOME/.antigenrc"
+
+source "$CONF_DIR/misc_options.zsh"
+
+source "$CONF_DIR/history.zsh"
+source "$CONF_DIR/path.zsh"
+source "$CONF_DIR/aliases.zsh"
+

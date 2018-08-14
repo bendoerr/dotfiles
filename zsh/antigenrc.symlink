@@ -1,0 +1,40 @@
+#!/usr/bin/env zsh
+#
+
+if [[ ! -f /usr/local/share/antigen/antigen.zsh ]]; then
+	echo "Run 'brew install antigen' to install antigen"
+	exit
+fi
+
+source /usr/local/share/antigen/antigen.zsh
+
+antigen use oh-my-zsh
+antigen bundle <<EOBUNDLES
+    # Bundles from the default repo (robbyrussell's oh-my-zsh)
+    brew
+    colored-man-pages
+    git
+    go
+    mvn
+    osx
+    sbt
+    scala
+		vi-mode
+
+    # Syntax highlighting bundle.
+    zsh-users/zsh-syntax-highlighting
+
+    # Fish-like auto suggestions
+    zsh-users/zsh-autosuggestions
+
+    # Extra zsh completions
+    zsh-users/zsh-completions
+
+    zsh-users/zsh-apple-touchbar
+EOBUNDLES
+
+# Load the theme
+antigen theme /Users/bdoerr/Projects/dotfiles/zsh bendoerr.zsh-theme --no-local-clone
+
+# Tell antigen that you're done
+antigen apply

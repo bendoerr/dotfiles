@@ -13,3 +13,15 @@ source "$CONF_DIR/history.zsh"
 source "$CONF_DIR/path.zsh"
 source "$CONF_DIR/aliases.zsh"
 
+bindkey "${terminfo[khome]}" beginning-of-line
+bindkey "${terminfo[kend]}" end-of-line
+
+
+function run_jgitflow() {
+    JAVA_MAX_MEM="8G" JAVA_HOME=$(/usr/libexec/java_home -v 1.8) /Users/bdoerr/.mvnvm/apache-maven-3.5.2/bin/mvn "jgitflow:${1:?}" -DallowUntracked=true -DenableSshAgent=true
+}
+
+alias feature-start="run_jgitflow feature-start"
+alias feature-finish="run_jgitflow feature-finish"
+alias release-start="run_jgitflow release-start"
+alias release-finish="run_jgitflow release-finish"

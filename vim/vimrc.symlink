@@ -75,6 +75,9 @@ nnoremap <silent> gs :tselect<CR>
 nnoremap ' `
 nnoremap ` '
 
+" don't have to learn to use registers
+nnoremap p pgvy
+
 " ----------------------------------------------------------------------------
 "  Display
 " ----------------------------------------------------------------------------
@@ -147,6 +150,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-bitbake', {'pinned': 1}
 
 
 call vundle#end()

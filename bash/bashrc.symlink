@@ -33,11 +33,11 @@ PS1="\n${C_SOLAR_LT_GREY}\u${C_RESET} on ${C_SOLAR_BLUE}\h${C_RESET} in ${C_SOLA
 
 # enable color support of ls and stuff
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
@@ -63,14 +63,14 @@ alias less='less -R'
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+. ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+. /etc/bash_completion
 fi
 
 export PATH=$PATH:~/.dotfiles/bin
@@ -110,3 +110,25 @@ shopt -s globstar
 shopt -s checkwinsize
 
 # For more awesomeness see .inputrc
+
+## Start Lumin Tools Managed Section
+
+# LUMIN_DEV_ROOT is the common root for Lumin development
+export LUMIN_DEV_ROOT="/Users/bdoerr/projects/lumin"
+
+# LUMIN_TOOLS_ROOT is the path of the 'lumin-tools' repository
+export LUMIN_TOOLS_ROOT="/Users/bdoerr/projects/lumin/lumin-tools"
+
+# LUMIN_SCRIPTS is the path of the common scripts in the 'lumin-tools' repository
+export LUMIN_SCRIPTS="${LUMIN_TOOLS_ROOT}/scripts"
+
+# LUMIN_FUNCTIONS is required for scripts to be able to find commonly sourced functions
+export LUMIN_FUNCTIONS="${LUMIN_SCRIPTS}/functions"
+
+# Add LUMIN_SCRIPTS to the PATH
+export PATH="${PATH}:${LUMIN_SCRIPTS}"
+
+## End Lumin Tools Managed Section
+
+complete -C /usr/local/bin/terraform terraform
+. "$HOME/.cargo/env"

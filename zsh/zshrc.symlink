@@ -18,10 +18,41 @@ bindkey "${terminfo[kend]}" end-of-line
 
 
 function run_jgitflow() {
-    JAVA_MAX_MEM="8G" JAVA_HOME=$(/usr/libexec/java_home -v 1.8) /Users/bdoerr/.mvnvm/apache-maven-3.5.2/bin/mvn "jgitflow:${1:?}" -DallowUntracked=true -DenableSshAgent=true
+JAVA_MAX_MEM="8G" JAVA_HOME=$(/usr/libexec/java_home -v 1.8) /Users/bdoerr/.mvnvm/apache-maven-3.5.2/bin/mvn "jgitflow:${1:?}" -DallowUntracked=true -DenableSshAgent=true
 }
+
+alias clear="timeout 3 cmatrix -b; reset; sleep 1; reset"
 
 alias feature-start="run_jgitflow feature-start"
 alias feature-finish="run_jgitflow feature-finish"
 alias release-start="run_jgitflow release-start"
 alias release-finish="run_jgitflow release-finish"
+export PATH="/usr/local/opt/flutter/bin:$PATH"
+export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+hash -d df="/usr/local/Caskroom/dwarf-fortress/0.47.05/df_osx"
+
+## Start Lumin Tools Managed Section
+
+# LUMIN_DEV_ROOT is the common root for Lumin development
+export LUMIN_DEV_ROOT="/Users/bdoerr/projects/lumin"
+
+# LUMIN_TOOLS_ROOT is the path of the 'lumin-tools' repository
+export LUMIN_TOOLS_ROOT="/Users/bdoerr/projects/lumin/lumin-tools"
+
+# LUMIN_SCRIPTS is the path of the common scripts in the 'lumin-tools' repository
+export LUMIN_SCRIPTS="${LUMIN_TOOLS_ROOT}/scripts"
+
+# LUMIN_FUNCTIONS is required for scripts to be able to find commonly sourced functions
+export LUMIN_FUNCTIONS="${LUMIN_SCRIPTS}/functions"
+
+# Add LUMIN_SCRIPTS to the PATH
+export PATH="${PATH}:${LUMIN_SCRIPTS}"
+
+## End Lumin Tools Managed Section
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
+
+PATH="/usr/local/opt/make/libexec/gnubin:$PATH"

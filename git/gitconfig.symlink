@@ -81,5 +81,14 @@
     enabled = true
 
 [user]
-    name = Ben Doerr
-    email = ben_doerr@premierinc.com
+	name = Ben Doerr
+	email = ben.doerr@luminsmart.com
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+    templatedir = ~/.git-templates
